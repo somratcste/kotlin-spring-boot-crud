@@ -33,14 +33,12 @@ class GadgetController(private val gadgetRepository: GadgetRepository) {
     }
 
     @PostMapping("/gadgets")
-    fun addNewGadget(@RequestBody gadget: Gadget, uri: UriComponentsBuilder): ResponseEntity<Gadget> {
+    fun addNewGadget(@RequestBody gadget: Gadget): ResponseEntity<Gadget> {
         val persistedGadget = gadgetRepository.save(gadget)
         if (ObjectUtils.isEmpty(persistedGadget)) {
             return ResponseEntity<Gadget>(HttpStatus.BAD_REQUEST)
         }
-        val headers = HttpHeaders()
-        headers.setLocation(uri.path("/gadget/{gadgetId}").buildAndExpand(gadget.gadgetId).toUri());
-        return ResponseEntity(headers, HttpStatus.CREATED)
+        return ResponseEntity(persistedGadget, HttpStatus.CREATED)
     }
 
     @GetMapping("/gadgets/{id}")

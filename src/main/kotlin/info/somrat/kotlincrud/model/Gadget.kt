@@ -12,9 +12,12 @@ data class Gadget (
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    val gadgetId: Long,
+    val id: Long,
+
     val gadgetName: String,
     val gadgetCategory: String?,
     val gagdetAvailability: Boolean = true,
     val gadgetPrice: Double
-)
+) {
+    constructor() : this(0, "", "", true, 0.0)
+}
