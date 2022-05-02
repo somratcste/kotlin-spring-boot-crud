@@ -6,10 +6,8 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api")
-class HelloController {
+class GadgetController {
 
-    @GetMapping("/hello")
-    fun helloMessage(): String {
-        return "Hello Kotlin World!";
-    }
+    @GetMapping("/")
+    fun display(): String = "Spring Boot Crud Operation with Kotlin and H2....!";
 }
